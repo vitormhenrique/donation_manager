@@ -239,6 +239,3 @@ SOCIALACCOUNT_ADAPTER = "donation_manager.users.adapters.SocialAccountAdapter"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-
-
-GOOGLE_API_KEY = 'AIzaSyA189J_YIPl-LICFh8wd07RFMUr3UHGMus'
