@@ -73,6 +73,8 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     "donation_manager.users.apps.UsersAppConfig",
+    "donation_manager.donation.apps.DonationConfig",
+    "donation_manager.transport_order.apps.TransportOrderConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
