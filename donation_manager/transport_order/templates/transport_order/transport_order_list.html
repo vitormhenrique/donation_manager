@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<p>All Transport Orders Created</p>
+
+
+{% for instance in object_list %}
+     <p>{{ instance.id }} - <a href='{{ instance.get_absolute_url }}'>{{ instance.donated_item.description}}</a></p>
+{% endfor %}
+
+
+{% endblock %}
