@@ -9,14 +9,14 @@ from donation_manager.donation.models import Donation
 
 class Transport_Order(models.Model):
 
-    WAITING_DESTINATION_DEFIITION = 'WDTN'
+    WAITING_DESTINATION_DEFINITION = 'WDTN'
     WAITING_DRIVER_ASSIGNMENT = 'WDRV'
     PICKUP_SCHEDULED = "PSCH"
     IN_TRANSIT = "TRAN"
     DELIVERED = "DLVR"
 
     TRANSIT_STATUS_CHOICES = (
-        (WAITING_DESTINATION_DEFIITION, "Waiting for Destination Definition"),
+        (WAITING_DESTINATION_DEFINITION, "Waiting for Destination Definition"),
         (WAITING_DRIVER_ASSIGNMENT, "Waiting for assigning a driver"),
         (PICKUP_SCHEDULED, "Pickup Scheduled"),
         (IN_TRANSIT, "In Transit"),
@@ -33,6 +33,22 @@ class Transport_Order(models.Model):
     )
     agreed_weekday = models.OneToOneField("Week_Day", related_name='weekday_assigned', on_delete=models.SET_NULL, blank=True, null=True)
     agreed_time_window = models.OneToOneField("Time_Window", on_delete=models.SET_NULL, blank=True, null=True)
+
+    @staticmethod
+    def get_all_waiting_destination():
+
+        queryset = Transport_Order.objects.filter(transit_status=Transport_Order.WAITING_DESTINATION_DEFINITION)
+
+        return queryset
+
+    @staticmethod
+    def get_all_waiting_driver_assignment():
+        
+        queryset = Transport_Order.objects.filter(transit_status=Transport_Order.WAITING_DRIVER_ASSIGNMENT)
+
+        return queryset
+
+
     
 
 class Week_Day(models.Model):

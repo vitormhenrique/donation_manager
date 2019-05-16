@@ -6,10 +6,17 @@ from .models import Transport_Order
 
 def transport_order_list_view(request):
     queryset = Transport_Order.objects.all() # list of objects
-
-    print(queryset)
-    
+    # queryset = Transport_Order.get_all_waiting_destination()    
+    # queryset = Transport_Order.get_all_waiting_driver_assignment()    
     context = {
         "object_list": queryset
     }
     return render(request, "transport_order/transport_order_list.html", context)
+
+def items_without_destination_view(request):    
+    queryset = Transport_Order.get_all_waiting_destination()    
+    # queryset = Transport_Order.get_all_waiting_driver_assignment()    
+    context = {
+        "object_list": queryset
+    }
+    return render(request, "transport_order/assign_destination.html", context)
