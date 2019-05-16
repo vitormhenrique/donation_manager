@@ -26,12 +26,12 @@ class Transport_Order(models.Model):
     driver = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     donated_item = models.ForeignKey(Donation, on_delete=models.SET_NULL, blank=True, null=True)
     origin = AddressField(on_delete=models.SET_NULL, blank=True, null=True)
-    destination = AddressField(on_delete=models.SET_NULL, blank=True, null=True)
+    destination = AddressField(related_name='destination_assigned', on_delete=models.SET_NULL, blank=True, null=True)
     transit_status = models.CharField(
         max_length=4,
         choices=TRANSIT_STATUS_CHOICES
     )
-    agreed_weekday = models.OneToOneField("Week_Day", on_delete=models.SET_NULL, blank=True, null=True)
+    agreed_weekday = models.OneToOneField("Week_Day", related_name='weekday_assigned', on_delete=models.SET_NULL, blank=True, null=True)
     agreed_time_window = models.OneToOneField("Time_Window", on_delete=models.SET_NULL, blank=True, null=True)
     
 
