@@ -30,6 +30,7 @@ class Transport_Order(models.Model):
         max_length=4,
         choices=TRANSIT_STATUS_CHOICES
     )
+    agreed_time = models.ForeignKey(Donation, on_delete=models.SET_NULL, blank=True, null=True)
     
 
 class Available_Times(models.Model):
@@ -77,4 +78,3 @@ class Available_Times(models.Model):
         max_length=20,
         choices=TIME_WINDOWS
     )
-    agreed_time = models.BooleanField(default=False)
