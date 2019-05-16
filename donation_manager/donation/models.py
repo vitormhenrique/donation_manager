@@ -45,6 +45,6 @@ class Donation(models.Model):
         choices=DONATION_STATUS_CHOICES,
         default=WAITING_CLAIM,
     )
-    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
+    institution = models.ForeignKey(Institution, on_delete=models.CASCADE, blank=True, null=True)
     donee = models.ForeignKey(Donee, on_delete=models.SET_NULL, blank=True, null=True)
     expiration_date = models.DateField(auto_now=False, auto_now_add=False)
