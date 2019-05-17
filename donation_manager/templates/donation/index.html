@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Make a Donation</h4>
+      </div>
+      <div class="card-body ">
+
+
+        <form>
+          <div class="form-group">
+            <label for="item_name">Item Name</label>
+            <input type="text" class="form-control" id="item_name" placeholder="Enter item name">
+          </div>
+          <div class="form-group">
+            <label for="item_description">Item Description</label>
+            <input type="text" class="form-control" id="item_description" placeholder="Description">
+          </div>
+
+          <div class="form-group">
+
+            <div class="form-row">
+              <div class="col">
+                <label for="exampleFormControlSelect2">Day of the Week</label>
+                <select class="form-control" id="exampleFormControlSelect2">
+                  <option>Monday</option>
+                  <option>Tuesday</option>
+                  <option>Wednesday</option>
+                  <option>Thrursday</option>
+                  <option>Friday</option>
+                  <option>Saturday</option>
+                  <option>Sunday</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="exampleFormControlSelect2">Time Window</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                  <option>06:00 AM - 08:00 AM</option>
+                  <option>08:00 AM - 10:00 AM</option>
+                  <option>10:00 AM - Noon</option>
+                  <option>02:00 PM - 04:00 PM</option>
+                  <option>04:00 PM - 06:00 PM</option>
+                  <option>06:00 PM - 08:00 PM</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

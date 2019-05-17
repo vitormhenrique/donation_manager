@@ -17,6 +17,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path("transport_order/", include("donation_manager.transport_order.urls", namespace="transport_order")),
+    path("donation/", include("donation_manager.donation.urls", namespace="transport_order")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

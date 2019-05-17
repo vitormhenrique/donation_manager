@@ -85,7 +85,7 @@ class Time_Window(models.Model):
     AM_10_to_Noon = "10:00 AM - Noon"
     PM_02_to_04 = "02:00 PM - 04:00 PM"
     PM_04_to_06 = "04:00 PM - 06:00 PM"
-    PM_06_to_08 = "06:00 PM - 08:00 PM"    
+    PM_06_to_08 = "06:00 PM - 08:00 PM" 
 
     TIME_WINDOWS = (
         (AM_6_to_8, "06:00 AM - 08:00 AM"),
