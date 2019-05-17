@@ -6,10 +6,11 @@
 <p>Items not claimed</p>
 
 
-<table>
+<table class="table">
   <tr>
     <th>Id</th>
-    <th>Description</th>    
+    <th>Description</th>  
+    <th>Selected</th>  
   </tr>
 
 
@@ -17,6 +18,7 @@
     <tr>
      <td>{{ instance.id }}</td>
      <td><a href='{{ instance.get_absolute_url }}'>{{ instance.donated_item.description}}</a></td>
+     <td> <input type="checkbox" name="selected_items" value="{{ instance.id }}" /> </td>
     </tr>
 
 {% endfor %}
