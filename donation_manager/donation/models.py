@@ -1,19 +1,19 @@
 from django.db import models
 from donation_manager.users.models import User
-from address.models import AddressField
+# from address.models import AddressField
 
 
 class Institution(models.Model):
     name = models.CharField(max_length=50)
-    address = AddressField(on_delete=models.CASCADE)
-    phone = models.CharField(max_length=50)
+    address = models.CharField(max_length=50)
+    phone = models.CharField(max_length=200)
     users = models.ManyToManyField(User)
 
 
 class Donee(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
-    address = AddressField(on_delete=models.CASCADE)
+    address = models.CharField(max_length=200)
 
 
 class Donation(models.Model):

@@ -1,5 +1,5 @@
 from django.db import models
-from address.models import AddressField
+# from address.models import AddressField
 
 from donation_manager.users.models import User
 from donation_manager.donation.models import Donation
@@ -25,8 +25,8 @@ class Transport_Order(models.Model):
 
     driver = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     donated_item = models.ForeignKey(Donation, on_delete=models.SET_NULL, blank=True, null=True)
-    origin = AddressField(on_delete=models.SET_NULL, blank=True, null=True)
-    destination = AddressField(related_name='destination_assigned', on_delete=models.SET_NULL, blank=True, null=True)
+    origin = models.CharField(max_length=200, blank=True, null=True)
+    destination = models.CharField(max_length=200, blank=True, null=True)
     transit_status = models.CharField(
         max_length=4,
         choices=TRANSIT_STATUS_CHOICES
