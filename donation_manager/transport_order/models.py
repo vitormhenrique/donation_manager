@@ -34,6 +34,10 @@ class Transport_Order(models.Model):
     agreed_weekday = models.OneToOneField("Week_Day", related_name='weekday_assigned', on_delete=models.SET_NULL, blank=True, null=True)
     agreed_time_window = models.OneToOneField("Time_Window", on_delete=models.SET_NULL, blank=True, null=True)
 
+    def __str__(self):
+        return self.donated_item.name + ' from: ' + self.origin + ' to: ' + self.destination
+    
+
     @staticmethod
     def get_all_waiting_destination():
 
