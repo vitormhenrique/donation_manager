@@ -9,11 +9,19 @@ class Institution(models.Model):
     phone = models.CharField(max_length=200)
     users = models.ManyToManyField(User)
 
+    __str__(self):
+        return self.name
+    
+
 
 class Donee(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
+
+    __str__(self):
+        return self.name
+    
 
 
 class Donation(models.Model):
@@ -48,3 +56,7 @@ class Donation(models.Model):
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE, blank=True, null=True)
     donee = models.ForeignKey(Donee, on_delete=models.SET_NULL, blank=True, null=True)
     expiration_date = models.DateField(auto_now=False, auto_now_add=False)
+
+    __str__(self):
+        return self.name
+    
