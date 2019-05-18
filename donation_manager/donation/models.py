@@ -13,7 +13,6 @@ class Institution(models.Model):
         return self.name
     
 
-
 class Donee(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
@@ -54,7 +53,7 @@ class Donation(models.Model):
     )
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE, blank=True, null=True)
     donee = models.ForeignKey(Donee, on_delete=models.SET_NULL, blank=True, null=True)
-    expiration_date = models.DateField(auto_now=False, auto_now_add=False)
+    expiration_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
 
     def __str__(self):
         return self.name   

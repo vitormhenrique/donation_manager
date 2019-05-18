@@ -32,10 +32,11 @@ class Transport_Order(models.Model):
         choices=TRANSIT_STATUS_CHOICES
     )
 
-    agreed_time_window = models.OneToOneField("AvailableTime",related_name='agreed_available_time', on_delete=models.SET_NULL, blank=True, null=True)
+    agreed_time_window = models.OneToOneField(
+        "AvailableTime", related_name='agreed_available_time', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
-        return self.donated_item.name + ' from: ' + self.origin + ' to: ' + self.destination
+        return f"Transport order for {self.donated_item.name}"
 
     @staticmethod
     def get_all_waiting_destination():
@@ -83,3 +84,10 @@ class AvailableTime(models.Model):
 
     end_time = models.CharField(
         max_length=20)
+
+    def __str__(self):
+        return f"{self.day_of_week} / {self.start_time} / {self.end_time}"
+
+    @classmethod
+    def get_day_code(self, display_string):
+        return list(filter(lambda x: x[1] == display_string, self.DAYS_OF_WEEK))[0][0]
