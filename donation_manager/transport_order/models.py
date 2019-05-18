@@ -82,5 +82,4 @@ class AvailableTime(models.Model):
     )
 
     end_time = models.CharField(
-        max_length=20
-
+        max_length=20)

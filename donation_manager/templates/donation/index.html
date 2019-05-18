@@ -41,9 +41,10 @@
 
 
               <div class="col">
-                <label for="exampleFormControlSelect2">Start Time</label>
+                <label for="exampleFormControlSelect2">Weekday</label>
                 <input type="text" class="form-control" id="dasdasds" placeholder="time window" list="exampleList">
-                <datalist id="exampleList">
+                <select name="example">
+                {% comment %} <datalist id="exampleList"> {% endcomment %}
                  <option>Monday</option>
                   <option>Tuesday</option>
                   <option>Wednesday</option>
@@ -51,7 +52,8 @@
                   <option>Friday</option>
                   <option>Saturday</option>
                   <option>Sunday</option>
-                </datalist>
+                {% comment %} </datalist> {% endcomment %}
+                </select>
               </div>
 
 
