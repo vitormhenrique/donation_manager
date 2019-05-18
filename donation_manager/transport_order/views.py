@@ -62,6 +62,8 @@ def items_without_driver_view(request):
 
         for transport_order_id in selected_transport_orders_ids:
             transport_order = get_object_or_404(Transport_Order, pk=transport_order_id)
+            transport_order.transit_status = Transport_Order.PICKUP_SCHEDULED
+            transport_order.driver = user
             transport_order.save()
 
     transport_order_queryset = Transport_Order.get_all_waiting_driver_assignment()  
@@ -83,8 +85,6 @@ def items_without_driver_view(request):
             times.append((available_time.id, label))
 
         schedule_options[transport_order.id] = times
-
-    print(f"schedule_options{schedule_options}")
 
     context = {
         "transport_order_list": transport_order_queryset,

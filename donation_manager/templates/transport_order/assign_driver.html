@@ -26,24 +26,26 @@
               <th scope="col"> </th>
             </tr>
 
-
             {% for transport_order in transport_order_list %}
                 <tr>
-                <td scope="row">{{ transport_order.donated_item.description }}</td>
-                <td scope="row">{{ transport_order.donated_item.origin}} </td>
-                <td scope="row">{{ transport_order.donated_item.destitanation}} </td>
-                <td scope="row">
-                
-                    <select class="form-control" name="schedule_options">
-                    {% comment %} {{ print(schedule_options) }} {% endcomment %}
-                        {% for opt in schedule_options %}
+                    <td scope="row">{{ transport_order.donated_item.description }}</td>
+                    <td scope="row">{{ transport_order.donated_item.origin}} </td>
+                    <td scope="row">{{ transport_order.donated_item.destitanation}} </td>
+                    <td scope="row">
+
+                        <select class="form-control" name="schedule_options">
+                            {{transport_order}}
+                            {% for key, options in schedule_options.items %}
+                                {% if key == transport_order.id %}
+                                    {% for option in options %}
+                                        <option value="{{ option.0 }}">{{ option.1 }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </select>
                         
-                            <option value="{{ opt.0 }}">{{ opt.1 }}</option>
-                            {% comment %} <option value="abc">abc</option> {% endcomment %}
-                        {% endfor %}
-                    </select>
-                </td>
-                <td> <input type="radio" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
+                    </td>
+                    <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
                 </tr>
             {% endfor %}
           </table>
