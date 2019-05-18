@@ -26,8 +26,8 @@
 
             {% for transport_order in transport_order_list %}
             <tr>
-              <th scope="row">{{ transport_order.id }}</td>
-              <td><a href='{{ transport_order.get_absolute_url }}'>{{ transport_order.donated_item.description}}</a>
+              <td scope="row">{{ transport_order.id }}</td>
+              <td  scope="row"><a href='{{ transport_order.get_absolute_url }}'>{{ transport_order.donated_item.description}}</a>
               </td>
               <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
             </tr>

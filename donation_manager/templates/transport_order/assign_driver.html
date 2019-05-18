@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Donations for transport</h4>
+      </div>
+      <div class="card-body ">
+
+
+
+        <form action="assign_driver" method="POST">
+          {% csrf_token %}
+
+          <table class="table">
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Pickup Place</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Pickup Availability</th>
+              <th scope="col">Hour window</th>
+              <th scope="col"> </th>
+            </tr>
+
+
+            {% for transport_order in transport_order_list %}
+                <tr>
+                <td scope="row">{{ transport_order.donated_item.description }}</td>
+                <td scope="row">{{ transport_order.donated_item.origin}} </td>
+                <td scope="row">{{ transport_order.donated_item.destitanation}} </td>
+                <td scope="row">
+                    <select class="form-control" name="schedule_options">
+                        {% for option in schedule_options %}
+                            <option value="{{ option[0:1] }}">{{ option[2] }}</option>
+                        {% endfor %}
+                    </select>{{ transport_order.donated_item.agreed_weekday}} </td>
+                <td> <input type="radio" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
+                </tr>
+            {% endfor %}
+          </table>
+
+          <div>
+            <div>
+              <br>
+
+              <div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
