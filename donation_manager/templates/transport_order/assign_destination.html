@@ -3,26 +3,71 @@
 
 {% block content %}
 
-<p>Items not claimed</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Items not claimed</h4>
+      </div>
+      <div class="card-body ">
 
 
-<table class="table">
-  <tr>
-    <th>Id</th>
-    <th>Description</th>  
-    <th>Selected</th>  
-  </tr>
+
+        <form action="assign_destination" method="POST">
+          {% csrf_token %}
+
+          <table class="table">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Description</th>
+              <th scope="col">Selected</th>
+            </tr>
 
 
-{% for instance in object_list %}
-    <tr>
-     <td>{{ instance.id }}</td>
-     <td><a href='{{ instance.get_absolute_url }}'>{{ instance.donated_item.description}}</a></td>
-     <td> <input type="checkbox" name="selected_items" value="{{ instance.id }}" /> </td>
-    </tr>
+            {% for transport_order in transport_order_list %}
+            <tr>
+              <th scope="row">{{ transport_order.id }}</td>
+              <td><a href='{{ transport_order.get_absolute_url }}'>{{ transport_order.donated_item.description}}</a>
+              </td>
+              <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
+            </tr>
 
-{% endfor %}
-</table>
+            {% endfor %}
+          </table>
 
+          <div>
+            <div>
+              <div>
+                <h5 class="card-title">Select Institution</h5>
+              </div>
+
+              <div>
+                <select class="form-control" name="selected_institution">
+
+
+                  {% for instituition in institution_list %}
+                  <option value="{{ instituition.id }}">{{ instituition.name }}</option>
+                  {% endfor %}
+
+                </select>
+
+              </div>
+
+              <br>
+
+              <div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
