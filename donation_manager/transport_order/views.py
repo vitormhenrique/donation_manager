@@ -27,17 +27,20 @@ def items_without_destination_view(request):
     print(institution_list)
 
     if request.method == "POST":
-        institution_id = request.POST.getlist("selected_institution")
-        institution = get_object_or_404(Institution, institution_id)
+        institution_id = request.POST.getlist("selected_institution")[0]
+        print(institution_id)
+        institution = get_object_or_404(Institution, pk=institution_id)
+        print(institution)
 
         selected_transport_orders_ids = request.POST.getlist("selected_transport_orders")
 
         # print(selected_transport_orders_ids)
         
         for transport_order_id in selected_transport_orders_ids:
-            transport_order = get_object_or_404(Transport_Order, transport_order_id)
+            transport_order = get_object_or_404(Transport_Order, pk=transport_order_id)
             transport_order.destination = institution.address
             transport_order.transit_status = Transport_Order.WAITING_DRIVER_ASSIGNMENT
+            transport_order.save()
     
     transport_order_queryset = Transport_Order.get_all_waiting_destination()    
     
