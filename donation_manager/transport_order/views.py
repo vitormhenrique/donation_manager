@@ -62,23 +62,19 @@ def items_without_driver_view(request):
 
         for transport_order_id in selected_transport_orders_ids:
             transport_order = get_object_or_404(Transport_Order, pk=transport_order_id)
-            #transport_order.transit_status = Transport_Order.
             transport_order.save()
 
     transport_order_queryset = Transport_Order.get_all_waiting_driver_assignment()    
     
     schedule_options = []
     for transport_order in transport_order_queryset:
-        weekdays = transport_order.week_day_set.all()
-        for day in weekdays:
-            time_windows = day.time_window_set.all()
-            for time_window in time_windows:
-                pass
-                #start_time = time_window.start
-                #end_time = time_window.end 
-                #d = day.day_of_week
-                #label = d + ' - ' + 
-                #schedule_options.add((day, start_time, end_time, label))
+        available_times = transport_order.available_time_set.all()
+        for available_time in available_times:
+            day_of_week = available_time.day_of_week
+            start_time = available_time.start_time
+            end_time = available_time.end_time
+            label = day_of_week + ' - ' + start_time + ' to ' + end_time
+            schedule_options.append((available_time.id, label))
 
     context = {
         "transport_order_list": transport_order_queryset,
