@@ -3,7 +3,7 @@ from .models import Transport_Order
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from donation_manager.users.models import User
-from donation_manager.donation.models import Institution
+from donation_manager.donation.models import Institution, Donation
 
 # Create your views here.
 
@@ -40,6 +40,7 @@ def items_without_destination_view(request):
             transport_order = get_object_or_404(Transport_Order, pk=transport_order_id)
             transport_order.destination = institution.address
             transport_order.transit_status = Transport_Order.WAITING_DRIVER_ASSIGNMENT
+            transport_order.donated_item.status = Donation.CLAIMED
             transport_order.save()
     
     transport_order_queryset = Transport_Order.get_all_waiting_destination()    
@@ -48,4 +49,4 @@ def items_without_destination_view(request):
         "transport_order_list": transport_order_queryset,
         "institution_list": institution_list,
     }
-    return render(request, "transport_order/assign_destination.html", context)
+    return render(request, "transport_order/assign_destination.html", context)        
