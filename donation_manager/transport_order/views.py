@@ -49,3 +49,38 @@ def items_without_destination_view(request):
         "institution_list": institution_list,
     }
     return render(request, "transport_order/assign_destination.html", context)
+
+
+@login_required
+def items_without_driver_view(request):    
+
+    user = request.user
+
+    if request.method == "POST":
+        selected_transport_orders_ids = request.POST.getlist("selected_transport_orders")[0]
+
+        # print(selected_transport_orders_ids)
+        
+        for transport_order_id in selected_transport_orders_ids:
+            transport_order = get_object_or_404(Transport_Order, pk=transport_order_id)
+            transport_order.transit_status = Transport_Order.
+            transport_order.save()
+
+    transport_order_queryset = Transport_Order.get_all_waiting_driver_assignment()    
+    
+    schedule_options = []
+    for transport_order in transport_order_queryset:
+        weekdays = transport_order.week_day_set.all()
+        for day in weekdays:
+            time_windows = day.time_window_set.all()
+            for time_window in time_windows:
+                t = time_window.time
+                d = day.day_of_week
+                label = d + ' - ' + t
+                schedule_options.add((day.id, time_window.id, label))
+
+    context = {
+        "transport_order_list": transport_order_queryset,
+        "schedule_options": schedule_options,
+    }
+    return render(request, "transport_order/assign_driver.html", context)

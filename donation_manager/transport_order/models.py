@@ -102,7 +102,7 @@ class Time_Window(models.Model):
 
     week_day = models.ForeignKey(Week_Day, on_delete=models.CASCADE)
 
-    time_window = models.CharField(
+    time = models.CharField(
         max_length=20,
         choices=TIME_WINDOWS
     )
