@@ -27,7 +27,8 @@
             {% for transport_order in transport_order_list %}
             <tr>
               <td scope="row">{{ transport_order.id }}</td>
-              <td  scope="row"><a href='{{ transport_order.get_absolute_url }}'>{{ transport_order.donated_item.description}}</a>
+              <td scope="row"><a
+                  href='{{ transport_order.get_absolute_url }}'>{{ transport_order.donated_item.description}}</a>
               </td>
               <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
             </tr>
@@ -36,12 +37,14 @@
           </table>
 
           <div>
-            <div>
-              <div>
-                <h5 class="card-title">Select Institution</h5>
-              </div>
+            <h5 class="card-title">Select Institution</h5>
+          </div>
 
-              <div>
+          <div class="form-group">
+
+            <div class="form-row">
+
+              <div class="col">
                 <select class="form-control" name="selected_institution">
 
 
@@ -50,17 +53,21 @@
                   {% endfor %}
 
                 </select>
-
               </div>
 
               <br>
 
-              <div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
+              <br>
 
               </div>
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
             </div>
+
           </div>
 
         </form>
