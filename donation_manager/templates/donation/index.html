@@ -36,28 +36,33 @@
           <div class="form-group">
 
             <div class="form-row">
+
+
+
+
               <div class="col">
-                <label for="exampleFormControlSelect2">Day of the Week</label>
-                <select class="form-control" id="exampleFormControlSelect2">
-                  <option>Monday</option>
+                <label for="exampleFormControlSelect2">Start Time</label>
+                <input type="text" class="form-control" id="dasdasds" placeholder="time window" list="exampleList">
+                <datalist id="exampleList">
+                 <option>Monday</option>
                   <option>Tuesday</option>
                   <option>Wednesday</option>
                   <option>Thrursday</option>
                   <option>Friday</option>
                   <option>Saturday</option>
                   <option>Sunday</option>
-                </select>
+                </datalist>
+              </div>
+
+
+
+              <div class="col">
+                <label for="exampleFormControlSelect2">Start Time</label>
+                <input type="text" class="form-control" id="start_time" placeholder="time window">
               </div>
               <div class="col">
-                <label for="exampleFormControlSelect2">Time Window</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                  <option>06:00 AM - 08:00 AM</option>
-                  <option>08:00 AM - 10:00 AM</option>
-                  <option>10:00 AM - Noon</option>
-                  <option>02:00 PM - 04:00 PM</option>
-                  <option>04:00 PM - 06:00 PM</option>
-                  <option>06:00 PM - 08:00 PM</option>
-                </select>
+                <label for="exampleFormControlSelect2">End Time</label>
+                <input type="text" class="form-control" id="end_time" placeholder="time window">
               </div>
             </div>
             <div class="row float-right">
@@ -77,3 +82,29 @@
   </div>
 </div>
 {% endblock %}
+
+
+{% block script %}
+
+<script>
+  var picker = new AppointmentPicker(document.getElementById('start_time'), {
+    interval: 60,
+    mode: '12h',
+    minTime: 06,
+    maxTime: 20,
+    startTime: 06,
+    endTime: 20,
+  });
+
+  var picker = new AppointmentPicker(document.getElementById('end_time'), {
+    interval: 60,
+    mode: '12h',
+    minTime: 06,
+    maxTime: 20,
+    startTime: 06,
+    endTime: 20,
+  });
+
+</script>
+
+{% endblock script %}

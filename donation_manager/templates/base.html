@@ -34,6 +34,7 @@
   <link href="{% static 'vendors/nice-select/css/nice-select.css' %}" rel="stylesheet">
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+  <link href="{% static 'css/appointment-picker.css' %}" rel="stylesheet">
 
 
   {% endblock %}
@@ -49,7 +50,8 @@
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            {% comment %} <a class="navbar-brand logo_h" href="index.html"><img src="{% static 'img/logo.png' %}" alt=""></a> {% endcomment %}
+            {% comment %} <a class="navbar-brand logo_h" href="index.html"><img src="{% static 'img/logo.png' %}"
+                alt=""></a> {% endcomment %}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon-bar"></span>
@@ -134,21 +136,21 @@
       </div>
     </nav>
   </div> {% endcomment %}
-<section class="causes_area">
-  <div class="container">
+  <section class="causes_area">
+    <div class="container">
 
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-    {% endfor %}
-    {% endif %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
 
-    {% block content %}
-    {% comment %} <p>Use this document as a way to quick start any new project.dasdadas</p> {% endcomment %}
-    {% endblock content %}
+      {% block content %}
+      {% comment %} <p>Use this document as a way to quick start any new project.dasdadas</p> {% endcomment %}
+      {% endblock content %}
 
-  </div> <!-- /container -->
-</section>
+    </div> <!-- /container -->
+  </section>
 
   {% block modal %}{% endblock modal %}
 
@@ -170,9 +172,17 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
   <script src="{% static 'js/gmaps.min.js' %}"></script>
   <script src="{% static 'js/theme.js' %}"></script>
+  <script src="{% static 'js/appointment-picker.js' %}"></script>
 
   <!-- place project specific Javascript in this file -->
   {% endblock javascript %}
+
+
+  {% block script %}
+
+  {% endblock script %}
+
+
 </body>
 
 </html>

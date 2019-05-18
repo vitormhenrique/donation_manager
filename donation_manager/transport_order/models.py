@@ -31,12 +31,11 @@ class Transport_Order(models.Model):
         max_length=4,
         choices=TRANSIT_STATUS_CHOICES
     )
-    agreed_weekday = models.OneToOneField("Week_Day", related_name='weekday_assigned', on_delete=models.SET_NULL, blank=True, null=True)
-    agreed_time_window = models.OneToOneField("Time_Window", on_delete=models.SET_NULL, blank=True, null=True)
+
+    agreed_time_window = models.OneToOneField("AvailableTime",related_name='agreed_available_time', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.donated_item.name + ' from: ' + self.origin + ' to: ' + self.destination
-    
 
     @staticmethod
     def get_all_waiting_destination():
@@ -47,15 +46,13 @@ class Transport_Order(models.Model):
 
     @staticmethod
     def get_all_waiting_driver_assignment():
-        
+
         queryset = Transport_Order.objects.filter(transit_status=Transport_Order.WAITING_DRIVER_ASSIGNMENT)
 
         return queryset
 
 
-    
-
-class Week_Day(models.Model):
+class AvailableTime(models.Model):
 
     MO = 'MO'
     TU = 'TU'
@@ -80,29 +77,10 @@ class Week_Day(models.Model):
         max_length=2,
         choices=DAYS_OF_WEEK
     )
-
-
-class Time_Window(models.Model):
-
-    AM_6_to_8 = "06:00 AM - 08:00 AM"
-    AM_8_to_10 = "08:00 AM - 10:00 AM"
-    AM_10_to_Noon = "10:00 AM - Noon"
-    PM_02_to_04 = "02:00 PM - 04:00 PM"
-    PM_04_to_06 = "04:00 PM - 06:00 PM"
-    PM_06_to_08 = "06:00 PM - 08:00 PM" 
-
-    TIME_WINDOWS = (
-        (AM_6_to_8, "06:00 AM - 08:00 AM"),
-        (AM_8_to_10, "08:00 AM - 10:00 AM"),
-        (AM_10_to_Noon, "10:00 AM - Noon"),
-        (PM_02_to_04, "02:00 PM - 04:00 PM"),
-        (PM_04_to_06, "04:00 PM - 06:00 PM"),
-        (PM_06_to_08, "06:00 PM - 08:00 PM"),
+    start_time = models.CharField(
+        max_length=20
     )
 
-    week_day = models.ForeignKey(Week_Day, on_delete=models.CASCADE)
-
-    time_window = models.CharField(
-        max_length=20,
-        choices=TIME_WINDOWS
+    end_time = models.CharField(
+        max_length=20
     )
