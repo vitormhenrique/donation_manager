@@ -33,10 +33,15 @@
                 <td scope="row">{{ transport_order.donated_item.origin}} </td>
                 <td scope="row">{{ transport_order.donated_item.destitanation}} </td>
                 <td scope="row">
+                
                     <select class="form-control" name="schedule_options">
-                        {% for option in schedule_options %}
-                            <option value="{{ option[0] }}">{{ option[1] }}</option>
+                    {% comment %} {{ print(schedule_options) }} {% endcomment %}
+                        {% for opt in schedule_options %}
+                        
+                            <option value="{{ opt.0 }}">{{ opt.1 }}</option>
+                            {% comment %} <option value="abc">abc</option> {% endcomment %}
                         {% endfor %}
+                    </select>
                 </td>
                 <td> <input type="radio" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
                 </tr>
