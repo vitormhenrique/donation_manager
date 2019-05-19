@@ -284,3 +284,4 @@ donation_manager/media/
 .pytest_cache/
 
 
+.vscode/

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Items not claimed</h4>
+      </div>
+      <div class="card-body ">
+        <form action="assign_destination" method="POST">
+          {% csrf_token %}
+          <table class="table">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Description</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Dimension</th>
+              <th scope="col">Origin</th>
+            </tr>
+            {% for transport_order in transport_order_list %}
+            <tr>
+              <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
+              <td scope="row"><a
+                  href='{{ transport_order.get_absolute_url }}'>{{ transport_order.donated_item.description}}</a>
+              </td>
+              <td>{{ transport_order.donated_item.weight }}</td>
+              <td>{{ transport_order.donated_item.dimension }}</td>
+              <td>{{ transport_order.origin }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col">
+                <label for="example">Select Institution</label>
+                <select name="selected_institution">
+                  {% for instituition in institution_list %}
+                  <option value="{{ instituition.id }}">{{ instituition.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

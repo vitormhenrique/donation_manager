@@ -12,3 +12,10 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
+
+    @property
+    def has_institution(self):
+        institutions = self.institution_set.all()
+        if institutions.count() > 0:
+            return True
+        return False
