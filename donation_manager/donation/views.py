@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from donation_manager.donation.models import Donation
 from donation_manager.transport_order.models import Transport_Order, AvailableTime
 from django.http import JsonResponse
+from django.contrib import messages
 
 
 def create_donation(request):
@@ -42,8 +43,7 @@ def create_donation(request):
             available_time.end_time = transport_order_end_time[counter]
             available_time.transport_order = transport_order
             available_time.save()
-
-
+        messages.success(request, 'Donation created with success')
         return JsonResponse({'message': 'success'})
  
     return render(request, 'donation/index.html')
