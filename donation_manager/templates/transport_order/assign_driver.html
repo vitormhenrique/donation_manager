@@ -7,33 +7,28 @@
   <div class="col-md-12">
     <div class="card ">
       <div class="card-header">
-        <h4 class="card-title">Donations for transport</h4>
+        <h4 class="card-title">Donations waiting for transportation</h4>
       </div>
       <div class="card-body ">
-
-
-
         <form action="assign_driver" method="POST">
           {% csrf_token %}
-
           <table class="table">
             <tr>
+              <th scope="col"></th>
               <th scope="col">Item</th>
               <th scope="col">Pickup Place</th>
               <th scope="col">Destination</th>
               <th scope="col">Pickup Availability</th>
-              <th scope="col">Hour window</th>
-              <th scope="col"> </th>
             </tr>
 
             {% for transport_order in transport_order_list %}
                 <tr>
+                    <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
                     <td scope="row">{{ transport_order.donated_item.description }}</td>
-                    <td scope="row">{{ transport_order.donated_item.origin}} </td>
-                    <td scope="row">{{ transport_order.donated_item.destitanation}} </td>
+                    <td scope="row">{{ transport_order.origin}} </td>
+                    <td scope="row">{{ transport_order.destination}} </td>
                     <td scope="row">
-
-                        <select class="form-control" name="schedule_options">
+                        <select name="schedule_options">
                             {{transport_order}}
                             {% for key, options in schedule_options.items %}
                                 {% if key == transport_order.id %}
@@ -43,25 +38,14 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-                        
                     </td>
-                    <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
                 </tr>
             {% endfor %}
           </table>
 
-          <div>
-            <div>
-              <br>
 
-              <div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-              </div>
-            </div>
-          </div>
-
+        <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
       </div>

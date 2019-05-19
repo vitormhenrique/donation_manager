@@ -27,7 +27,7 @@ def items_without_destination_view(request):
     print(institution_list)
 
     if request.method == "POST":
-        institution_id = request.POST.getlist("selected_institution")[0]
+        institution_id = request.POST.get("selected_institution")
         print(institution_id)
         institution = get_object_or_404(Institution, pk=institution_id)
         print(institution)
@@ -58,7 +58,7 @@ def items_without_driver_view(request):
     user = request.user
 
     if request.method == "POST":
-        selected_transport_orders_ids = request.POST.getlist("selected_transport_orders")[0]
+        selected_transport_orders_ids = request.POST.getlist("selected_transport_orders")
 
         for transport_order_id in selected_transport_orders_ids:
             transport_order = get_object_or_404(Transport_Order, pk=transport_order_id)

@@ -10,66 +10,41 @@
         <h4 class="card-title">Items not claimed</h4>
       </div>
       <div class="card-body ">
-
-
-
         <form action="assign_destination" method="POST">
           {% csrf_token %}
-
           <table class="table">
             <tr>
-              <th scope="col">Id</th>
+              <th scope="col"></th>
               <th scope="col">Description</th>
-              <th scope="col">Selected</th>
+              <th scope="col">Weight</th>
+              <th scope="col">Dimension</th>
+              <th scope="col">Origin</th>
             </tr>
-
-
             {% for transport_order in transport_order_list %}
             <tr>
-              <td scope="row">{{ transport_order.id }}</td>
+              <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
               <td scope="row"><a
                   href='{{ transport_order.get_absolute_url }}'>{{ transport_order.donated_item.description}}</a>
               </td>
-              <td> <input type="checkbox" name="selected_transport_orders" value="{{ transport_order.id }}" /> </td>
+              <td>{{ transport_order.donated_item.weight }}</td>
+              <td>{{ transport_order.donated_item.dimension }}</td>
+              <td>{{ transport_order.origin }}</td>
             </tr>
-
             {% endfor %}
           </table>
-
-          <div>
-            <h5 class="card-title">Select Institution</h5>
-          </div>
-
           <div class="form-group">
-
             <div class="form-row">
-
               <div class="col">
-                <select class="form-control" name="selected_institution">
-
-
+                <label for="example">Select Institution</label>
+                <select name="selected_institution">
                   {% for instituition in institution_list %}
                   <option value="{{ instituition.id }}">{{ instituition.name }}</option>
                   {% endfor %}
-
                 </select>
               </div>
-
-              <br>
-
-              <br>
-
-              </div>
-
-                                    <div class="form-row">
-                                        <div class="col">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </div>
             </div>
-
           </div>
-
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
       </div>

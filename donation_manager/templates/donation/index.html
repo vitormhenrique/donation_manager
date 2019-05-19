@@ -67,7 +67,6 @@
           <div class="form-group" id="selected_times">
             <div class="form-row">
               <table class="table" id="table">
-
               </table>
             </div>
           </div>
@@ -178,7 +177,7 @@
         'transport_order_end_time': transport_order_end_time
       },
       success: function (json) {
-
+        location.reload();
       },
       error: function (xhr, errmsg, err) {
 
